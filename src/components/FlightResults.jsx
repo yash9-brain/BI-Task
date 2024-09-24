@@ -90,8 +90,28 @@ const FlightResults = ({
   }
 
   return (
-    <div className="flex">
-      <aside className="w-1/4 p-4 bg-gray-100 rounded-lg">
+    <div className="flex mt-10 gap-5">
+      <aside className="w-1/4 p-8 rounded-3xl border border-[#DBDDED]">
+        <div className="flex items-center justify-around mb-5">
+          <div>
+            <label>Sort by</label>
+            <select className="border px-4 py-2 rounded-full bg-[#DBDDED]">
+              <option value="USD">Best Overall</option>
+              <option value="USD">Fastest</option>
+              <option value="AUD">Cheapest</option>
+            </select>
+          </div>
+
+          <div>
+            <label>Currency</label>
+            <select className="border px-4 py-2 rounded-full bg-[#DBDDED]">
+              <option value="USD">USD</option>
+              <option value="AUD">AUD</option>
+              <option value="AUD">INR</option>
+              <option value="AUD">EUR</option>
+            </select>
+          </div>
+        </div>
         <h2 className="font-bold text-lg">Filters</h2>
         <div className="my-4">
           <label className="block text-sm">Flight Outbound</label>
@@ -106,33 +126,45 @@ const FlightResults = ({
           <input type="range" min="0" max="24" className="w-full" />
         </div>
         <div className="my-4">
+          <label className="block text-sm">Stopover Duration</label>
+          <input type="range" min="0" max="24" className="w-full" />
+        </div>
+        <div className="my-4">
           <label className="block text-sm">Maximum Stopovers</label>
-          <select className="w-full border p-2 rounded-lg">
-            <option value="1">1</option>
-            <option value="2">2</option>
+          <select className="w-full border rounded-full px-4 py-2 bg-[#DBDDED]">
+            <option value="1">01</option>
+            <option value="2">02</option>
+          </select>
+        </div>
+        <div className="my-4">
+          <label className="block text-sm">Search Mode</label>
+          <select className="w-full border rounded-full px-4 py-2 bg-[#DBDDED]">
+            <option value="emirates">Cash Flight</option>
+            <option value="qatar">Flight</option>
           </select>
         </div>
         <div className="my-4">
           <label className="block text-sm">Rewards Partner</label>
-          <select className="w-full border p-2 rounded-lg">
+          <select className="w-full border rounded-full px-4 py-2 bg-[#DBDDED]">
             <option value="emirates">Emirates</option>
             <option value="qatar">Qatar Airways</option>
           </select>
         </div>
-        <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg">
-          Reset Filters
-        </button>
       </aside>
 
-      <main className="w-3/4 p-4 bg-[#DBDDED]">
-        <div className="flex justify-between items-center mb-4">
-          <div className="text-lg font-bold">100 Total Routes Found</div>
-          <div>
-            <label className="mr-2">Currency:</label>
-            <select className="border p-2 rounded-lg">
-              <option value="USD">USD</option>
-              <option value="AUD">AUD</option>
-            </select>
+      <main className="w-3/4 p-4 bg-[#DBDDED] rounded-3xl">
+        <div className="flex justify-between items-center mb-4 gap-5">
+          <div className="text-lg font-bold bg-white w-1/2 p-4 rounded-xl text-center">
+            Total Routes Found
+          </div>
+          <div className="text-lg font-bold bg-white p-4 w-1/2 rounded-xl text-center">
+            Best Route
+          </div>
+          <div className="text-lg font-bold bg-white w-1/2 p-4 rounded-xl text-center">
+            Cheapest Route
+          </div>
+          <div className="text-lg font-bold bg-white w-1/2 p-4 rounded-xl text-center">
+            Fastest Route
           </div>
         </div>
 
@@ -140,7 +172,7 @@ const FlightResults = ({
           flights.map((flight) => (
             <div
               key={flight.id}
-              className="bg-white rounded-lg shadow-md mb-10 flex justify-between gap-5 items-center"
+              className="bg-white rounded-3xl shadow-md m-5 flex justify-between gap-5 items-center"
             >
               <img src={Flight} height={150} width={150} className="ml-7" />
 

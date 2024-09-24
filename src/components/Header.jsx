@@ -5,7 +5,7 @@ import backlogo from "../assets/backlogo.png";
 
 const Header = () => {
   return (
-    <header className="flex justify-between items-center p-10 text-[#7179BD]">
+    <header className="flex justify-between items-center p-5 text-[#7179BD]">
       <div className="flex flex-col gap-5 items-start">
         <img src={logo} alt="Logo" className="h-10" />
         <div className="flex items-center justify-center gap-4">
