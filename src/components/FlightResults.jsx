@@ -4,6 +4,7 @@ import Flight from "../assets/Flight.png";
 import Aeroplane from "../assets/Aeroplane.png";
 import Route from "../assets/Route.png";
 import Location from "../assets/Location.png";
+import FlightBooking from "./FlightBooking";
 
 const formatDate = (dateString) => {
   const options = {
@@ -26,6 +27,7 @@ const FlightResults = ({
 }) => {
   const [flights, setFlights] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedFlight, setSelectedFlight] = useState(null);
 
   const getToken = async () => {
     const response = await fetch(
@@ -84,6 +86,10 @@ const FlightResults = ({
 
     getFlights();
   }, [departure, returnCity, earliestDeparture, lastReturn, travellers]);
+
+  if (selectedFlight) {
+    return <FlightBooking flight={selectedFlight} />;
+  }
 
   if (loading) {
     return <p>Loading flights...</p>;
@@ -214,7 +220,10 @@ const FlightResults = ({
                 <p className="text-xl font-bold mb-2">
                   {flight.price.currency} {flight.price.grandTotal}
                 </p>
-                <button className="text-black bg-white py-2 px-4 rounded-full">
+                <button
+                  onClick={() => setSelectedFlight(flight)} // Pass flight to selectedFlight
+                  className="text-black bg-white py-2 px-4 rounded-full"
+                >
                   Book
                 </button>
               </div>
@@ -223,7 +232,10 @@ const FlightResults = ({
         ) : (
           <p>No flights found</p>
         )}
-        <button className="w-full bg-gray-200 text-gray-700 py-2 mt-4 rounded-lg">
+        <button
+          onClick={() => setSelectedFlight(flight)}
+          className="w-full bg-gray-200 text-gray-700 py-2 mt-4 rounded-lg"
+        >
           Load More
         </button>
       </main>
